@@ -1,0 +1,139 @@
+.container
+  width: 100%
+  max-width: 100%
+  overflow-x: none
+  overflow-y: auto
+
+.header
+  position: absolute
+  top: 0
+  left: 0
+  font-size: 14px
+  width: 100%
+  padding-top: 5px
+
+.addButton
+  margin-top: 3px
+  height: 50px
+
+.table
+  width: 100%
+  text-align: left
+  padding-bottom: 5px
+
+  // ::ng-deep .mat-form-field-flex > .mat-form-field-infix
+  //   padding: 0px !important
+
+  // ::ng-deep .mat-form-field-appearance-outline .mat-form-field-label
+  //   margin-top:-15px
+
+  // ::ng-deep label.ng-star-inserted
+  //   transform: translateY(-0.59375em) scale(.75) !important
+
+  input
+    font-weight: bold
+    font-size: 14px
+
+  .mat-row
+    height: auto
+
+  .mat-cell
+    padding: 10px
+    font-weight: bold
+    font-size: 16px
+    white-space: nowrap
+
+  .mat-row:hover
+    background: #448AFF
+    background: #add8e6
+
+  .mat-header-row
+    border-top-left-radius: 2px
+    border-top-right-radius: 2px
+
+    .mat-header-cell
+      border-top: 1px solid #d2d2d2
+      white-space: nowrap
+
+  .mat-cell:first-child, .mat-header-cell:first-child, .mat-footer-cell:first-child
+    border-left: 1px solid #d2d2d2
+
+  .mat-cell:not(first-child), .mat-header-cell:not(first-child), .mat-footer-cell:not(first-child)
+    padding-left: 15px
+    border-right: 1px solid #d2d2d2
+    border-bottom: 1px solid #d2d2d2
+    // border-right: 1px solid #e0e0e0
+
+  .sum
+    font-weight: bold
+    padding-right: 10px
+
+
+  // Start of the expanded row styling
+  .detail-row 
+    height: 0
+
+  .expanded-cell
+    padding: 0
+    
+  .expanded-detail
+    overflow: hidden
+    display: flex
+
+    .expanded-content
+      width: 100%
+      padding: 8px
+
+      .expand-form-save
+        padding: 0
+
+.edit
+  padding: 0
+
+  .date
+    padding: 0
+    
+    input
+      height: 45px
+      width: 70%
+
+.paginate
+  .mat-toolbar-row
+    margin: 0
+    padding: 15px 0 0 0
+    background: #ffffff
+    height: 80px
+
+  .export-button
+    margin-left: 10px
+
+    .export-icon
+      margin-top: -5px
+
+  .export-as
+    margin: 10px 20px -5px 15px
+    padding: 0
+    font-size: 14px
+    width: 20%
+
+  .table-message
+    font-size: 14px
+
+.loading
+  height: 40vh
+
+// .mat-header-cell, .mat-footer-cell, .mat-cell
+//   min-width: 100px
+.mat-icon-button.delete
+  width: 30px
+  height: 30px
+  line-height: 30px
+
+  ::ng-deep .mat-icon
+    font-size: 20px
+    width: 20px
+    height: 20px
+    line-height: 20px
+
+.expand
+  cursor: pointer

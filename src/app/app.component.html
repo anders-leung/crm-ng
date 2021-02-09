@@ -1,0 +1,59 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<mat-sidenav-container class="nav-container" autosize>
+  <mat-sidenav mode="side" opened class="side-nav">
+    <mat-toolbar class="logo">
+      <a mat-button class="nav-button" [routerLink]="['/']">
+        IA
+        <!-- <mat-icon class="arrow" style="margin-right: 5px">reorder</mat-icon> -->
+      </a>
+    </mat-toolbar>
+    <div class="container" *ngIf="globals.user.role">
+      <mat-list *ngFor="let item of navigation; let i = index">
+        <a
+          mat-button
+          class="nav-button"
+          (click)="onClick(item, i)"
+          [routerLink]="!item.children ? [item.url] : []"
+          *ngIf="item.role ? globals.user.role === item.role : true"
+          [ngStyle]="
+            router.url.includes(item.url)
+              ? { background: '#548DD4' }
+              : item.isChild
+              ? { background: '#616161' }
+              : {}
+          "
+        >
+          {{ item.name }}
+          <mat-icon class="arrow" *ngIf="!item.isOpen && item.children"
+            >keyboard_arrow_down</mat-icon
+          >
+          <mat-icon class="arrow" *ngIf="item.isOpen && item.children"
+            >keyboard_arrow_up</mat-icon
+          >
+        </a>
+      </mat-list>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="navigation">
+      <span>{{ globals.page }}</span>
+      <span class="fill-space"></span>
+      <button
+        mat-button
+        *ngIf="globals.user.initials"
+        [matMenuTriggerFor]="userMenu"
+      >
+        <mat-icon>account_circle</mat-icon>
+        {{ globals.user.name }}
+      </button>
+      <mat-menu #userMenu="matMenu">
+        <a mat-menu-item routerLink="/users/profile">Profile</a>
+        <!-- <a mat-menu-item routerLink="/users/jobs">My Jobs</a> -->
+        <a mat-menu-item (click)="logout()">Logout</a>
+      </mat-menu>
+    </mat-toolbar>
+    <div class="main-page">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

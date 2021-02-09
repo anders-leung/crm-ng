@@ -1,0 +1,7 @@
+<mat-form-field class="form-field" appearance="outline">
+  <mat-label [ngStyle]="color ? { 'color': color } : {}">{{ label }}</mat-label>
+  <mat-select [multiple]="multiple" [(value)]="value" (selectionChange)="selectionChange()">
+    <mat-option *ngIf="!multiple && none" [value]="null">None</mat-option>
+    <mat-option *ngFor="let option of options" [value]="option.value !== undefined ? option.value : option">{{ option.label || option }}</mat-option>
+  </mat-select>
+</mat-form-field>

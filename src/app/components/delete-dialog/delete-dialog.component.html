@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>{{ title }}</h1>
+<div mat-dialog-content>
+  <p>Once deleted, it cannot be undone, you must ask Anders to manually look for the last viable snapshot of the client or job that you are deleting.</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" cdkFocusInitial>Cancel</button>
+  <button mat-button color="warn" [mat-dialog-close]="true">Delete</button>
+</div>

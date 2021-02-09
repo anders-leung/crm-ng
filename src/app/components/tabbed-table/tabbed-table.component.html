@@ -1,0 +1,79 @@
+<mat-card class="card" *ngIf="!loading">
+  <mat-tab-group *ngIf="tabs.length > 1" [selectedIndex]="dropdown ? 1 : 0" (selectedTabChange)="selected = $event.index">
+    <mat-tab class="dropdownTab" *ngIf="dropdown" disabled="true">
+      <ng-template mat-tab-label style="margin: 0; padding: 0;">
+        <button
+          mat-stroked-button
+          class="dropdown"
+          [matMenuTriggerFor]="menu"
+          disableRipple="true"
+        >
+          <span style="color:rgba(0,0,0,.87);">{{
+            dropdown.label + ": " + selection
+          }}</span>
+          <mat-icon style="color:rgba(0,0,0,.87); margin-inline-start: 10px"
+            >keyboard_arrow_down</mat-icon
+          >
+        </button>
+        <mat-menu #menu="matMenu">
+          <button
+            mat-menu-item
+            (click)="dropdownSelectionChange(item)"
+            *ngFor="let item of items"
+            [disabled]="selection === item"
+          >
+            {{ item }}
+          </button>
+        </mat-menu>
+      </ng-template>
+    </mat-tab>
+    <mat-tab *ngFor="let tab of tabs; let i = index" [label]="tab.name">
+      <mat-card-content style="padding-top: 5px">
+        <app-table
+          [columns]="tab.columns || columns"
+          [redirectUrl]="redirectUrl"
+          [query]="tab.query"
+          [select]="tab.select"
+          [adder]="adder"
+          [getter]="getter"
+          [setter]="setter"
+          [deleter]="deleter"
+          [search]="search"
+          [paginate]="paginate"
+          [export]="export"
+          [title]="(tab.title ? tab.title : (title ? title + ' ' + tab.name : tab.name) + ' - ' + today)"
+          [filters]="filters"
+          [raw]="raw"
+          [openNewTab]="tab.openNewTab"
+          [addForm]="tab.addForm || addForm"
+          [expandForm]="expandForm"
+          *ngIf="dropdown ? (selected === i+1) : (selected === i)"
+        >
+        </app-table>
+      </mat-card-content>
+    </mat-tab>
+  </mat-tab-group>
+  <mat-card-content *ngIf="tabs.length === 1">
+    <app-table
+      [columns]="tabs[0].columns || columns"
+      [redirectUrl]="redirectUrl"
+      [query]="tabs[0].query"
+      [select]="tabs[0].select"
+      [adder]="adder"
+      [getter]="getter"
+      [setter]="setter"
+      [deleter]="deleter"
+      [search]="search"
+      [paginate]="paginate"
+      [export]="export"
+      [title]="title"
+      [filters]="filters"
+      [raw]="raw"
+      [openNewTab]="tabs[0].openNewTab"
+      [addForm]="addForm"
+      [expandForm]="expandForm"
+      [single]="true"
+    >
+    </app-table>
+  </mat-card-content>
+</mat-card>

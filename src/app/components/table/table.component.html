@@ -1,0 +1,312 @@
+<div class="container">
+  <div
+    fxLayout="row"
+    fxLayoutAlign="space-between"
+    [class]="single ? 'singleHeader' : 'header'"
+  >
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-icon matPrefix *ngIf="!searching">search</mat-icon>
+      <input
+        matInput
+        autofocus
+        [(ngModel)]="searchValue"
+        (ngModelChange)="tableSearchUpdate.next($event)"
+        placeholder="Search the whole table"
+      />
+    </mat-form-field>
+    <button
+      class="addButton"
+      mat-raised-button
+      color="primary"
+      *ngIf="adder"
+      (click)="addRow()"
+    >
+      Add
+    </button>
+  </div>
+  <table
+    class="table"
+    mat-table
+    matSort
+    multiTemplateDataRows
+    [dataSource]="dataSource"
+    [ngStyle]="!single ? { 'margin-top': '65px' } : {}"
+  >
+    <ng-container
+      *ngFor="let column of columns"
+      [matColumnDef]="column.label"
+      [sticky]="!!column.sticky"
+    >
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [mat-sort-header]="column.field"
+        [ngStyle]="{ color: column.color || 'black' }"
+      >
+        <h3>{{ column.label }}</h3>
+      </th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [ngStyle]="{
+          color: column.color || 'black',
+          padding: column.type === 'deleteButton' ? '0 10px' : 'auto'
+        }"
+        (click)="edit(element, column)"
+      >
+        <ng-container
+          *ngIf="editCell.id !== (element.id || element._id) + column.label"
+        >
+          <span *ngIf="column.type === 'currency'" style="float: right">{{
+            element[column.field] | currency
+          }}</span>
+          <span *ngIf="column.type === 'percent'" style="float: right">{{
+            element[column.field] ? element[column.field] + "%" : ""
+          }}</span>
+          <ng-container
+            *ngIf="column.type !== 'currency' && column.type !== 'percent'"
+          >
+            <div *ngIf="column.type === 'expandButton'" class="expand">
+              <!-- <button *ngIf="column.type === 'expandButton'" mat-raised-button color="primary" class="expand"> -->
+              {{
+                "Click to " +
+                  (element == expandedElement ? "Collapse" : "Expand")
+              }}
+              <!-- </button> -->
+            </div>
+            <button
+              *ngIf="column.type === 'deleteButton'"
+              mat-icon-button
+              color="warn"
+              class="delete"
+              (click)="deleteRow(element.id)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+            <span *ngIf="column.type !== 'deleteButton'">{{
+              element[column.field]
+            }}</span>
+          </ng-container>
+        </ng-container>
+        <div
+          class="edit"
+          *ngIf="editCell.id === (element.id || element._id) + column.label"
+        >
+          <div [ngSwitch]="editCell.type">
+            <mat-form-field
+              *ngSwitchCase="'input'"
+              class="form-field"
+              appearance="outline"
+            >
+              <input
+                matInput
+                autofocus
+                [(ngModel)]="editCell.value"
+                (keyup.enter)="onEditChange($event, element, column.field)"
+                [prefix]="editCell.prefix || ''"
+                [mask]="editCell.mask || ''"
+                [suffix]="editCell.suffix || ''"
+                [dropSpecialCharacters]="false"
+              />
+            </mat-form-field>
+            <mat-form-field
+              *ngSwitchCase="'select'"
+              class="form-field"
+              appearance="outline"
+            >
+              <mat-select
+                [(value)]="editCell.value"
+                *ngIf="!editCell.multiple"
+                (selectionChange)="
+                  onEditChange($event, element, column.field, true)
+                "
+              >
+                <mat-option>None</mat-option>
+                <mat-option
+                  *ngFor="let option of editCell.options"
+                  [value]="option.value !== undefined ? option.value : option"
+                >
+                  {{
+                    option.label !== undefined ? option.label : option
+                  }}</mat-option
+                >
+              </mat-select>
+              <mat-select
+                #select
+                *ngIf="editCell.multiple"
+                [(value)]="editCell.value"
+                [multiple]="editCell.multiple"
+                (openedChange)="selectClosed($event, element, column.field)"
+              >
+                <mat-option *ngIf="editCell.options.length === 0"
+                  >None</mat-option
+                >
+                <mat-option
+                  *ngFor="let option of editCell.options"
+                  [value]="option.value !== undefined ? option.value : option"
+                >
+                  {{
+                    option.label !== undefined ? option.label : option
+                  }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field
+              *ngSwitchCase="'date'"
+              class="form-field date"
+              appearance="outline"
+            >
+              <input
+                #input
+                matInput
+                autofocus
+                [matDatepicker]="dp"
+                [(ngModel)]="editCell.value"
+                (keyup.enter)="
+                  onEditChange(
+                    { source: { triggerValue: undefined } },
+                    element,
+                    column.field,
+                    true
+                  )
+                "
+                (ngModelChange)="onEditChange($event, element, column.field)"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="dp"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #dp (closed)="input.blur()"></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+      </td>
+      <ng-container *ngIf="search">
+        <td mat-footer-cell *matFooterCellDef="let element">
+          <div
+            class="columnSearch"
+            [ngStyle]="column.sum ? { 'text-align': 'right' } : {}"
+          >
+            <input
+              matInput
+              [(ngModel)]="filters[column.field]"
+              (ngModelChange)="tableSearchUpdate.next($event)"
+              [placeholder]="column.label"
+              *ngIf="!column.sum"
+            />
+            <span
+              *ngIf="column.sum && column.type === 'currency'"
+              class="sum"
+              >{{ getSum(column.field, column.fn) | currency }}</span
+            >
+            <span
+              *ngIf="column.sum && column.type !== 'currency'"
+              class="sum"
+              >{{ getSum(column.field, column.fn) | number }}</span
+            >
+          </div>
+        </td>
+      </ng-container>
+    </ng-container>
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [attr.colspan]="displayedColumns.length"
+        class="expanded-cell"
+        [@tdExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
+        (click)="edit(element, columns.length - 1)"
+      >
+        <div
+          class="expanded-detail"
+          [@detailExpand]="
+            element == expandedElement ? 'expanded' : 'collapsed'
+          "
+        >
+          <div
+            fxLayout="column"
+            fxLayoutAlign="start end"
+            class="expanded-content"
+          >
+            <app-form
+              [objects]="[element]"
+              [rows]="expandForm"
+              style="width: 100%"
+            ></app-form>
+            <button
+              mat-raised-button
+              color="primary"
+              class="expand-form-save"
+              (click)="saveForm(element)"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr
+      mat-row
+      *matRowDef="let element; columns: displayedColumns"
+      (dblclick)="redirect(element)"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: ['expandedDetail']"
+      class="detail-row"
+      [hidden]="!expandedElement"
+    ></tr>
+    <ng-container *ngIf="search">
+      <tr
+        mat-footer-row
+        *matFooterRowDef="displayedColumns; sticky: true"
+        [hidden]="loading"
+      ></tr>
+    </ng-container>
+  </table>
+
+  <div
+    class="loading"
+    *ngIf="loading"
+    style="display: flex; justify-content: center; align-items: center"
+  >
+    <mat-progress-spinner color="primary" mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
+</div>
+<mat-toolbar class="paginate">
+  <mat-toolbar-row>
+    <button
+      mat-mini-fab
+      class="export-button"
+      color="primary"
+      (click)="exportTable()"
+      *ngIf="export === true"
+    >
+      <mat-icon class="export-icon">save_alt</mat-icon>
+    </button>
+    <mat-form-field
+      class="export-as"
+      appearance="outline"
+      *ngIf="export === true"
+    >
+      <mat-label>Export table as</mat-label>
+      <input matInput [(ngModel)]="title" (keyup.enter)="exportTable()" />
+    </mat-form-field>
+    <p class="table-message">
+      Hold "Shift" and scroll to scroll sideways for the table
+    </p>
+    <span class="fill-space"></span>
+    <mat-paginator
+      class="paginator"
+      pageSize="10"
+      [pageSizeOptions]="pageSizeOptions"
+      showFirstLastButtons
+    >
+    </mat-paginator>
+  </mat-toolbar-row>
+</mat-toolbar>

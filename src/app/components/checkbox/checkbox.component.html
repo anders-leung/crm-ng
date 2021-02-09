@@ -1,0 +1,8 @@
+<mat-checkbox
+  [(ngModel)]="value"
+  [name]="label + 'Checkbox'"
+  (change)="onChange()"
+  [ngStyle]="color ? { 'color': color } : {}"
+>
+  {{ label }}
+</mat-checkbox>

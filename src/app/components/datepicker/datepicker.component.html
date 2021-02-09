@@ -1,0 +1,7 @@
+<mat-form-field class="form-field" appearance="outline">
+  <mat-label [ngStyle]="color ? { 'color': color } : {}">{{ label }}</mat-label>
+  <input matInput [matDatepicker]="dp" [(ngModel)]="value" (ngModelChange)="onChange()" [placeholder]="label"
+    [readonly]="!!readonly">
+  <mat-datepicker-toggle matSuffix [for]="dp" [disabled]="!!readonly"></mat-datepicker-toggle>
+  <mat-datepicker #dp [disabled]="!!readonly"></mat-datepicker>
+</mat-form-field>

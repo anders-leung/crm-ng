@@ -1,0 +1,59 @@
+<mat-form-field class="form-field" appearance="outline" *ngIf="!multiple">
+  <mat-label>{{ label }}</mat-label>
+  <!-- Normal autocomplete -->
+  <input
+    matInput
+    [matAutocomplete]="auto"
+    [(ngModel)]="value"
+    (ngModelChange)="filter()"
+    [required]="!!required"
+    [readonly]="!!readonly"
+    [hidden]="multiple"
+  />
+  <mat-autocomplete #auto="matAutocomplete" [hidden]="multiple">
+    <mat-option *ngFor="let option of filteredOptions" [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
+  <mat-checkbox
+    matSuffix
+    *ngIf="checkLabel !== null"
+    [(ngModel)]="checkValue"
+    (ngModelChange)="onClick()"
+  >
+    {{ checkLabel }}
+  </mat-checkbox>
+</mat-form-field>
+
+<mat-form-field class="form-field" appearance="outline" *ngIf="multiple">
+  <mat-label>{{ label }}</mat-label>
+  <mat-chip-list #chipList>
+    <mat-chip
+      *ngFor="let option of selected"
+      [selectable]="true"
+      [removable]="true"
+      (removed)="remove(option)"
+    >
+      {{ option }}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    <input
+      [matChipInputFor]="chipList"
+      [matChipInputAddOnBlur]="true"
+      (matChipInputTokenEnd)="add($event)"
+      [matAutocomplete]="auto"
+      [formControl]="formControl"
+    />
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="add($event)">
+    <mat-option
+      *ngFor="let option of filteredMOptions | async"
+      [value]="option"
+    >
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
+  <button mat-icon-button matSuffix (click)="clear()">
+    <mat-icon>cancel</mat-icon>
+  </button>
+</mat-form-field>

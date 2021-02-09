@@ -1,0 +1,14 @@
+<form>
+  <mat-card class="card">
+    <mat-card-content *ngIf="!loading">
+      <div class="tab">
+        <h3 *ngIf="!id">Add a New Contact</h3>
+        <app-form [objects]="[contact]" [rows]="config.contact"></app-form>
+        <app-form *ngIf="globals.user.role === 'Administrator'" [objects]="[contact]" [rows]="config.adminOnly"></app-form>
+      </div>
+    </mat-card-content>
+    <mat-card-footer>
+      <button mat-raised-button class="full-width" color="primary" (click)="save()">Save</button>
+    </mat-card-footer>
+  </mat-card>
+<form>

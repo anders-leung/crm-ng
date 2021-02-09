@@ -1,0 +1,50 @@
+<mat-form-field class="form-field" appearance="outline">
+  <mat-label [ngStyle]="color ? { 'color': color } : {}">{{ label }}</mat-label>
+  <input
+    *ngIf="!textarea && !currency"
+    matInput
+    [(ngModel)]="value"
+    (change)="onChange()"
+    [disabled]="disabled"
+    [required]="!!required"
+    [readonly]="!!readonly"
+    [prefix]="prefix"
+    [mask]="mask"
+    [suffix]="suffix"
+    [dropSpecialCharacters]="false"
+    [type]="inputType ? inputType : 'text'"
+  />
+  <textarea
+    *ngIf="textarea"
+    matInput
+    [(ngModel)]="value"
+    (change)="onChange()"
+    [rows]="rows"
+    [required]="!!required"
+    [readonly]="!!readonly"
+  ></textarea>
+  <button
+    mat-icon-button
+    matSuffix
+    (click)="onClick()"
+    [attr.aria-pressed]="clicked"
+    *ngIf="off"
+    [ngStyle]="!on && clicked ? { 'background-color': 'rgba(0,0,0,.38)' } : {}"
+    (change)="buttonChange(clicked)"
+  >
+    <div *ngIf="on; else elseBlock">
+      <mat-icon>{{ clicked ? on : off }}</mat-icon>
+    </div>
+    <ng-template #elseBlock>
+      <mat-icon>{{ off }}</mat-icon>
+    </ng-template>
+  </button>
+  <mat-checkbox
+    matSuffix
+    *ngIf="checkLabel !== null"
+    [(ngModel)]="checkValue"
+    (ngModelChange)="onClick()"
+  >
+    {{ checkLabel }}</mat-checkbox
+  >
+</mat-form-field>
