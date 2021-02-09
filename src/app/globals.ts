@@ -13,6 +13,8 @@ export const exists = { $nin: [undefined, null] };
 export const notExists = { $in: [undefined, null] };
 export const existsString = { $nin: [undefined, null, ''] };
 export const notExistsString = { $in: [undefined, null, ''] };
+export const phone = '(000) 000-0000';
+export const email = 'A*@A*.SSSS';
 
 @Injectable()
 export class Globals {
