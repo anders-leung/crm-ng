@@ -1,20 +1,33 @@
 <mat-card class="card">
   <mat-card-header class="card-header">
     <mat-card-title>Please login to continue</mat-card-title>
-    <mat-card-subtitle *ngIf="error" style="color: red">{{ error.message }}</mat-card-subtitle>
+    <mat-card-subtitle *ngIf="error" style="color: red">{{
+      error.message
+    }}</mat-card-subtitle>
   </mat-card-header>
   <form class="form">
     <mat-form-field class="form-field" appearance="outline">
       <mat-label>Email</mat-label>
-      <input matInput autofocus [(ngModel)]="email" name="email">
+      <input matInput autofocus [(ngModel)]="email" name="email" />
     </mat-form-field>
     <mat-form-field class="form-field" appearance="outline">
       <mat-label>Password</mat-label>
-      <input matInput [type]="show ? 'text' : 'password'" [(ngModel)]="password" name="password">
-      <!-- <button mat-icon-button matSuffix (click)="show = !show" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="show">
-      <mat-icon>{{show ? 'visibility' : 'visibility_off'}}</mat-icon>
+      <input
+        matInput
+        [type]="show ? 'text' : 'password'"
+        [(ngModel)]="password"
+        name="password"
+      />
+      <!-- <button
+        mat-icon-button
+        matSuffix
+        (click)="show = !show"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="show"
+      >
+        <mat-icon>{{ show ? "visibility" : "visibility_off" }}</mat-icon>
       </button> -->
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="login()">Login</button>
+    <button mat-raised-button color="primary" (click)="login()" [disabled]="loggingIn">Login</button>
   </form>
 </mat-card>

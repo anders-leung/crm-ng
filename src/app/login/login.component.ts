@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   password: string = '';
   show: boolean;
   error: any;
+  loggingIn: boolean = false;
 
   constructor(
     private globals: Globals,
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (!this.email || !this.password) return;
+    this.loggingIn = true;
     this.loginService.login(this.email, this.password)
       .subscribe((user) => {
         this.error = null;
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/']);
       }, error => {
         this.error = error
+        this.loggingIn = false;
       });
   }
 
