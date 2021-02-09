@@ -61,7 +61,7 @@ export class HttpToastrInterceptor implements HttpInterceptor {
   }
 
   private parseUrl(url) {
-    const tokens = url.split('4200/');
+    const tokens = url.split('5200/');
     let [which, what] = tokens[1].split('/');
 
     const uppercase = ['t1', 't2', 'nr'];
