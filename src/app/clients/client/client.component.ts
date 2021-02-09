@@ -19,7 +19,7 @@ export class ClientComponent implements OnInit {
   loading: boolean = true;
   page: string = 'Client Sheet';
   id: string;
-  companies: string[] = ['IA', 'Cantrust'];
+  companies: string[] = ['CRM', 'Cantrust'];
   client: any;
   invoices: any = {
     ia: [],

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "IA": {
+    "CRM": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/IA",
+            "outputPath": "dist/CRM",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,19 +62,19 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "IA:build",
+            "browserTarget": "CRM:build",
             "port": 5000
           },
           "configurations": {
             "production": {
-              "browserTarget": "IA:build:production"
+              "browserTarget": "CRM:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "IA:build"
+            "browserTarget": "CRM:build"
           }
         },
         "test": {
@@ -113,16 +113,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "IA:serve"
+            "devServerTarget": "CRM:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "IA:serve:production"
+              "devServerTarget": "CRM:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "IA"
+  "defaultProject": "CRM"
 }

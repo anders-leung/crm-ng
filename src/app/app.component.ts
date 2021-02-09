@@ -13,7 +13,7 @@ import { navigation } from './navigation';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'IA';
+  title = 'CRM';
   navigation: any = navigation;
   selected: any;
 
