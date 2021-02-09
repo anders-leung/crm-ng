@@ -17,7 +17,6 @@ export class HttpToastrInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       map((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
-          console.log('event--->>>', event);
           if (event.status === 200) {
             this.handleSuccess(req);
           }
@@ -49,7 +48,7 @@ export class HttpToastrInterceptor implements HttpInterceptor {
       return throwError(err.error.message);
     } else {
       const { action, which, what } = this.parseReq(req);
-      this.toastr.error(`Failed to ${action} ${which}`, err.error.message);
+      if (which !== 'Auth') this.toastr.error(`Failed to ${action} ${which}`, err.error.message);
       return throwError(err);
     }
   }
