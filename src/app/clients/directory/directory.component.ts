@@ -16,6 +16,7 @@ export class DirectoryComponent implements OnInit {
   redirectUrl: string = '/clients/client';
   page: string = 'Client Directory';
   table: any;
+  adder: any;
   getter: any;
   setter: any;
   deleter: any;
@@ -30,6 +31,7 @@ export class DirectoryComponent implements OnInit {
   ngOnInit() {
     const { user } = this.globals;
     this.export = user.role === 'Administrator';
+    this.adder = this.clientService.saveClient;
     this.getter = this.clientService.getClients;
     this.setter = this.clientService.updateClient;
     this.deleter = this.clientService.deleteClient;
