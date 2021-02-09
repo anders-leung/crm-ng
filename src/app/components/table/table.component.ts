@@ -13,7 +13,7 @@ import * as moment from 'moment';
 import { TableService } from './table.service';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { AddDialogComponent } from '../add-dialog/add-dialog.component';
-import { Globals } from 'src/app/globals';
+import { Globals, deleteRow } from 'src/app/globals';
 
 @Component({
   selector: 'app-table',
@@ -104,6 +104,9 @@ export class TableComponent implements OnInit {
     if (this.export === undefined) {
       this.export = this.globals.user.role === 'Administrator';
     }
+    if (this.globals.user.role.name === 'Administrator') {
+      this.columns.push(deleteRow);
+    }
 
     document.addEventListener('keydown', (e) => {
       if (e.keyCode === 27) {
@@ -111,7 +114,6 @@ export class TableComponent implements OnInit {
       }
     });
 
-    // console.log('starting table component')
     this.originalQuery = _.cloneDeep(this.query);
     if (this.search === undefined) this.search = true;
     if (this.paginate === undefined) this.paginate = true;
