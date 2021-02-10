@@ -53,7 +53,7 @@ export class Globals {
     return id;
   }
 
-  public haveAccess(uri = null) {
+  public haveAccess(uri = null, renavigate = false) {
     if (!this.user.role) return false;
 
     const { access, name } = this.user.role;
@@ -64,7 +64,7 @@ export class Globals {
     const tokens = this.router.url.split(environment.url);
     if (!uri) uri = tokens[1];
     const hasAccess = access.some(route => uri.includes(route));
-    if (!hasAccess) this.location.back();
+    if (!hasAccess && renavigate) this.router.navigate(['/']);
 
     return hasAccess;
   }

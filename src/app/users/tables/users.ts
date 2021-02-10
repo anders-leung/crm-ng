@@ -14,30 +14,26 @@ export default (options) => {
       { label: 'Email', field: 'email', edit: { type: 'input' } },
       { label: 'Role', field: 'role', fn: (user) => user.role.name, edit: { type: 'select', options: roles, none: false } },
       { label: 'Initials', field: 'initials', edit: { type: 'input' } },
-      { label: 'Email Password', field: 'emailPassword', edit: { type: 'input' } },
       { label: 'Private', field: 'private', edit: { type: 'select', options: yesNo } },
     ],
     addForm: {
       form: [
         [
           { label: 'Email', field: 'email' },
-          { label: 'Password', field: 'password', },
+          { label: 'Password', field: 'password', inputType: 'password' },
         ],
         [
           { label: 'Name', field: 'name', },
           { label: 'Initials', field: 'initials' },
         ],
         [
-          { label: 'Email Password', field: 'emailPassword' },
+          { label: 'Email Password', field: 'emailPassword', inputType: 'password' },
           { label: 'Private', field: 'private', type: 'checkbox' },
         ],
         [
-          { label: 'Role', field: 'role', type: 'select', options: ['Employee', 'Administrator'], none: false },
+          { label: 'Role', field: 'role', type: 'select', options: roles, none: false },
         ],
       ],
-      default: {
-        role: 'Employee',
-      },
     },
   };
 

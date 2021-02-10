@@ -6,8 +6,8 @@ export default {
     },
   ],
   columns: [
-    { label: 'Name', field: 'name', sticky: true },
-    { label: 'Access', field: 'access' },
+    { label: 'Name', field: 'name', edit: { type: 'input' }, sticky: true },
+    { label: 'Access', field: 'access', edit: { type: 'input' } },
   ],
   addForm: {
     form: [
@@ -15,7 +15,7 @@ export default {
         { label: 'Name', field: 'name' }
       ],
       [
-        { label: 'Access', field: 'access' },
+        { label: 'Access (comma separated list)', field: 'access' },
       ],
     ],
   },

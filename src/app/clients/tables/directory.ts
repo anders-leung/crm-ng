@@ -12,6 +12,7 @@ const table = (user) => {
       { label: 'Client Name', field: 'name', sticky: true },
       { label: 'Phone', field: 'phone', edit: { type: 'input', mask: phone } },
       { label: 'Email', field: 'email', edit: { type: 'input', mask: email } },
+      { label: 'Last Notified', field: 'notified', edit: { type: 'date' }, type: 'date' },
     ],
     addForm: {
       form: [

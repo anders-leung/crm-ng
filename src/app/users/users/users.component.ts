@@ -29,7 +29,7 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (!this.globals.haveAccess) return;
+    if (!this.globals.haveAccess()) return;
     this.adder = this.usersService.createUser;
     this.getter = this.usersService.getUsers;
     this.setter = this.usersService.updateUser;

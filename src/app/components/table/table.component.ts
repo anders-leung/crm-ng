@@ -335,32 +335,18 @@ export class TableComponent implements OnInit {
   }
 
   onEditChange(event, element, field, set) {
-    const setAndUpsert = (display = null) => {
-      let value = this.editCell.value;
-      if (display === undefined) value = '';
-      if (value && value._d) value = value.format('MMM D, YYYY');
-      if (value === undefined) value = null;
-
+    const { key, code, toDate } = event;
+    if (set || toDate || key === 'Enter' || code === 'Enter') {
+      const value = this.editCell.value;
       const update = { [field]: value };
-      _.set(element, field, value);
       this.editCell = _.clone(this.emptyCell);
       this.setter(element.id, update)
         .subscribe((response) => {
-          console.log('response: ', response);
+          const { fn, type } = _.find(this.columns, { field });
+          const updatedValue = this.getValue(response, field, fn, type);
+          _.set(element, field, updatedValue);
+          this.dataSource.data = this.DATA;
         });
-      if (display) _.set(element, field, display);
-    };
-
-    if (set) {
-      const { source: { triggerValue } } = event;
-      return setAndUpsert(triggerValue);
-    }
-    if (event.toDate) {
-      return setAndUpsert();
-    }
-    const { key, code } = event;
-    if (key === 'Enter' || code === 'Enter') {
-      return setAndUpsert();
     }
   }
 
