@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'https://crm-backend.vercel.app/',
+  url: 'https://crm-backend.vercel.app',
   version: '',
 };
 
