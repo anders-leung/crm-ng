@@ -14,7 +14,7 @@
           class="nav-button"
           (click)="onClick(item, i)"
           [routerLink]="!item.children ? [item.url] : []"
-          *ngIf="item.role ? globals.user.role === item.role : true"
+          *ngIf="globals.haveAccess(item.url)"
           [ngStyle]="
             router.url.includes(item.url)
               ? { background: '#548DD4' }

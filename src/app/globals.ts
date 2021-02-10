@@ -53,10 +53,20 @@ export class Globals {
     return id;
   }
 
-  public haveAccess(role) {
-    if (this.user.role !== role) {
-      this.location.back();
-    }
+  public haveAccess(uri = null) {
+    if (!this.user.role) return false;
+
+    const { access, name } = this.user.role;
+
+    // Do nothing, admin allowed
+    if (name === 'Administrator') return true;
+
+    const tokens = this.router.url.split(environment.url);
+    if (!uri) uri = tokens[1];
+    const hasAccess = access.some(route => uri.includes(route));
+    if (!hasAccess) this.location.back();
+
+    return hasAccess;
   }
 
   public deleteRow(columns) {

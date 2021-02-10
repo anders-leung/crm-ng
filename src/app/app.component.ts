@@ -33,6 +33,8 @@ export class AppComponent {
     if (Object.keys(user).length === 0) {
       this.redirectToLogin();
     }
+
+    this.globals.haveAccess();
   }
 
   public redirectToLogin() {

@@ -21,11 +21,13 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private router: Router,
     private cookieService: CookieService,
-  ) {
+  ) { }
+
+  ngOnInit() {
     this.globals.page = 'Login';
     this.cookieService.deleteAll();
   }
-
+  
   login() {
     if (!this.email || !this.password) return;
     this.loggingIn = true;
@@ -40,8 +42,4 @@ export class LoginComponent implements OnInit {
         this.loggingIn = false;
       });
   }
-
-  ngOnInit() {
-  }
-
 }

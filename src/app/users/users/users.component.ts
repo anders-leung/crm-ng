@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { UsersService } from '../users.service';
 
-import { table } from '../tables/users';
+import table from '../tables/users';
 
 import { Globals } from 'src/app/globals';
 
@@ -16,11 +16,12 @@ export class UsersComponent implements OnInit {
   page: string = 'Users List';
   selected: string;
   options: string[];
-  table: any = table; 
+  table: any;
   adder: any;
   getter: any;
   setter: any;
   deleter: any;
+  loading: boolean = true;
 
   constructor(
     private usersService: UsersService,
@@ -28,9 +29,15 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (!this.globals.haveAccess) return;
     this.adder = this.usersService.createUser;
     this.getter = this.usersService.getUsers;
     this.setter = this.usersService.updateUser;
     this.deleter = this.usersService.deleteUser;
+    this.usersService.getOptions()
+      .subscribe((options) => {
+        this.table = table(options);
+        this.loading = false;
+      });
   }
 }

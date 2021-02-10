@@ -105,7 +105,7 @@ export class TableComponent implements OnInit {
       this.export = this.globals.user.role === 'Administrator';
     }
     if (this.globals.user.role.name === 'Administrator') {
-      this.columns.push(deleteRow);
+      this.columns = [...this.columns].concat(deleteRow);
     }
 
     document.addEventListener('keydown', (e) => {

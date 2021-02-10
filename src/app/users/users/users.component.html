@@ -1,4 +1,8 @@
+<div class="spinner" *ngIf="loading" fxLayoutAlign="center center">
+  <mat-spinner></mat-spinner>
+</div>
 <tabbed-table
+  *ngIf="!loading"
   [redirectUrl]="redirectUrl"
   [page]="page"
   [table]="table"
