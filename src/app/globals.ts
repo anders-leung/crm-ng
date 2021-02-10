@@ -26,7 +26,7 @@ export class Globals {
 
   page: string = '';
   user: any = {};
-  url: string = `http://${environment.ip}:5200`;
+  url: string = environment.url;
 
   public redirectToLogin() {
     this.cookieService.deleteAll();
