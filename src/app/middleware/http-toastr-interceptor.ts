@@ -6,6 +6,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class HttpToastrInterceptor implements HttpInterceptor {
@@ -61,7 +62,7 @@ export class HttpToastrInterceptor implements HttpInterceptor {
   }
 
   private parseUrl(url) {
-    const tokens = url.split('5200/');
+    const tokens = url.split(environment.url);
     let [which, what] = tokens[1].split('/');
 
     const uppercase = ['t1', 't2', 'nr'];
