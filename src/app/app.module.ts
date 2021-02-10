@@ -26,7 +26,7 @@ import { OptionModule } from './option/option.module';
 import { DeleteDialogModule } from './components/delete-dialog/delete-dialog.module';
 import { AddDialogModule } from './components/add-dialog/add-dialog.module';
 import { JobModule } from './jobs/job.module';
-import { ModelModule } from './model/model.module';
+import { RoleModule } from './roles/role.module';
 
 @NgModule({
   declarations: [
@@ -58,7 +58,7 @@ import { ModelModule } from './model/model.module';
     OptionModule,
     AddDialogModule,
     DeleteDialogModule,
-    ModelModule,
+    RoleModule,
   ],
   exports: [
     MatToolbarModule,
