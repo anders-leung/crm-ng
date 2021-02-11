@@ -1,13 +1,9 @@
-<div
-  class="loading"
-  *ngIf="loading"
-  style="display: flex; justify-content: center; align-items: center"
->
-  <mat-progress-spinner color="primary" mode="indeterminate">
-  </mat-progress-spinner>
-</div>
+<p class="mat-subheading-2 card">
+  New Option types will be added to the currently displayed table, simply
+  refresh to see the new option type in it's own table
+</p>
 <tabbed-table
-  *ngIf="!loading"
+  *ngIf="!globals.loading"
   [redirectUrl]="redirectUrl"
   [page]="page"
   [table]="table"
