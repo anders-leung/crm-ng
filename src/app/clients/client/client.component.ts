@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as moment from 'moment';
 
 import { Globals } from '../../globals';
 
-import { config } from './config';
+import config from './config';
 import { ClientService } from '../client.service';
-import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -16,20 +14,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class ClientComponent implements OnInit {
-  loading: boolean = true;
   page: string = 'Client Sheet';
   id: string;
-  companies: string[] = ['CRM', 'Cantrust'];
   client: any;
-  invoices: any = {
-    ia: [],
-    cantrust: [],
-  };
   config: any;
-  redirectUrl: string = '/invoice/invoice';
-  files: any;
-  activeStatuses: string[] = ['Active', 'No YE', 'New'];
-
   saving: boolean = false;
 
   constructor(
@@ -38,7 +26,9 @@ export class ClientComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private globals: Globals,
-  ) { }
+  ) {
+    this.globals.loading = true;
+  }
 
   ngOnInit() {
     if (this.globals.setupPage(this.page)) return;
@@ -49,17 +39,11 @@ export class ClientComponent implements OnInit {
         this.clientService.getClient(this.id)
           .subscribe((client: any) => {
             if (this.id) {
-              this.globals.page = `${this.page} - ${client.client.name}`;
+              this.globals.page = `${this.page} - ${client.name}`;
             }
-            client.client = client.client || {};
-            client.client.employer = client.client.employer || {};
-            client.spouse = client.spouse || {};
-            client.spouse.employer = client.spouse.employer || {};
-            client.insurances = client.insurances || [{ beneficiaries: [] }];
-            client.insurances[0] = client.insurances[0] || { beneficiaries: [] };
             this.client = client;
             this.config = config(options);
-            this.loading = false;
+            this.globals.loading = false;
           });
       });
   }
