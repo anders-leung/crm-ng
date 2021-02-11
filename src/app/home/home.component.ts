@@ -9,9 +9,10 @@ import * as moment from 'moment';
 })
 
 export class HomeComponent implements OnInit {
-  date: string = moment('2020-01-20').format('MMM D, YYYY');
+  date: string = moment('2021-02-11').format('MMM D, YYYY');
   messages: string[] = [
-    `Nothing here...`,
+    `As the backend is deployed with Vercel, utilizing serverless functions, requests on cold
+    starts may fail. Please kindly try again, and your request should continue as expected.`,
   ];
 
   constructor(
