@@ -18,15 +18,23 @@ export const email = 'A*@A*.SSSS';
 
 @Injectable()
 export class Globals {
+  page: string = '';
+  user: any = {};
+  url: string = environment.url;
+  private _loading: boolean = false;
+
   constructor(
     private cookieService: CookieService,
     private router: Router,
     private location: Location,
   ) { }
-
-  page: string = '';
-  user: any = {};
-  url: string = environment.url;
+  
+  public get loading(): boolean {
+    return this._loading;
+  }
+  public set loading(value: boolean) {
+    this._loading = value;
+  }
 
   public redirectToLogin() {
     this.cookieService.deleteAll();
