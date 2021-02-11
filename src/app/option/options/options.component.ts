@@ -25,7 +25,9 @@ export class OptionsComponent implements OnInit {
   constructor(
     private globals: Globals,
     private optionService: OptionService,
-  ) { }
+  ) {
+    this.globals.loading = true;
+  }
 
   ngOnInit() {
     this.optionService.getVariables()
@@ -35,7 +37,7 @@ export class OptionsComponent implements OnInit {
         this.setter = this.optionService.updateOption;
         this.deleter = this.optionService.deleteOption;
         this.table = table(options);
-        this.loading = false;
+        this.globals.loading = false;
       });
   }
 }
