@@ -13,7 +13,6 @@ export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
   show: boolean;
-  error: any;
   loggingIn: boolean = false;
 
   constructor(
@@ -33,12 +32,10 @@ export class LoginComponent implements OnInit {
     this.loggingIn = true;
     this.loginService.login(this.email, this.password)
       .subscribe((user) => {
-        this.error = null;
         this.cookieService.set('User', JSON.stringify(user));
         this.globals.user = user;
         this.router.navigate(['/']);
       }, error => {
-        this.error = error
         this.loggingIn = false;
       });
   }

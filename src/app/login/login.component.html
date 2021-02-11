@@ -1,9 +1,6 @@
 <mat-card class="login-card">
   <mat-card-header class="card-header">
     <mat-card-title>Please login to continue</mat-card-title>
-    <mat-card-subtitle *ngIf="error" style="color: red">{{
-      error.message
-    }}</mat-card-subtitle>
   </mat-card-header>
   <form class="form">
     <mat-form-field class="form-field" appearance="outline">
@@ -28,7 +25,17 @@
         <mat-icon>{{ show ? "visibility" : "visibility_off" }}</mat-icon>
       </button> -->
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="login()" [disabled]="loggingIn">Login</button>
-    <p class="mat-caption">Not a user? Try logging in as email: admin@admin.admin, password: admin, and add yourself!</p>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="login()"
+      [disabled]="!email || !password || loggingIn"
+    >
+      Login
+    </button>
+    <p class="mat-caption">
+      Not a user? Try logging in as email: admin@admin.admin, password: admin,
+      and add yourself!
+    </p>
   </form>
 </mat-card>
