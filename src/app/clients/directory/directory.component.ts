@@ -20,7 +20,6 @@ export class DirectoryComponent implements OnInit {
   getter: any;
   setter: any;
   deleter: any;
-  export: boolean;
   title: string = `${this.page} - ${moment().format('MMM D, YYYY')}`;
 
   constructor(
@@ -30,7 +29,6 @@ export class DirectoryComponent implements OnInit {
 
   ngOnInit() {
     const { user } = this.globals;
-    this.export = user.role === 'Administrator';
     this.adder = this.clientService.saveClient;
     this.getter = this.clientService.getClients;
     this.setter = this.clientService.updateClient;
