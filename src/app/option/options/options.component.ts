@@ -20,8 +20,6 @@ export class OptionsComponent implements OnInit {
   setter: any;
   deleter: any;
 
-  loading: boolean = true;
-
   constructor(
     private globals: Globals,
     private optionService: OptionService,

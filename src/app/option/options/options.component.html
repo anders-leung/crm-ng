@@ -1,16 +1,17 @@
-<p class="mat-subheading-2 card">
-  New Option types will be added to the currently displayed table, simply
-  refresh to see the new option type in it's own table
-</p>
-<tabbed-table
-  *ngIf="!globals.loading"
-  [redirectUrl]="redirectUrl"
-  [page]="page"
-  [table]="table"
-  [adder]="adder"
-  [getter]="getter"
-  [setter]="setter"
-  [deleter]="deleter"
-  [export]="export"
->
-</tabbed-table>
+<div *ngIf="!globals.loading">
+  <p class="mat-subheading-2 card">
+    New Option types will be added to the currently displayed table, simply
+    refresh to see the new option type in it's own table
+  </p>
+  <tabbed-table
+    [redirectUrl]="redirectUrl"
+    [page]="page"
+    [table]="table"
+    [adder]="adder"
+    [getter]="getter"
+    [setter]="setter"
+    [deleter]="deleter"
+    [export]="export"
+  >
+  </tabbed-table>
+</div>
