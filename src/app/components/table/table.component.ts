@@ -92,10 +92,7 @@ export class TableComponent implements OnInit {
     private changeDetectorRef: ChangeDetectorRef,
     public dialog: MatDialog,
   ) {
-    this.tableSearchUpdate.pipe(
-      debounceTime(500),
-      distinctUntilChanged())
-      .subscribe(this.tableSearch);
+    this.tableSearchUpdate.pipe(debounceTime(500)).subscribe(this.tableSearch);
   }
 
   ngOnInit() {
@@ -194,6 +191,7 @@ export class TableComponent implements OnInit {
 
   columnSearch = () => {
     const filters = this.getFilters();
+    console.log('filters: ', filters)
     let data = this.DATA;
     if (this.raw) data = _.cloneDeep(this.rawData);
     let filteredData = data.filter((row) => {
