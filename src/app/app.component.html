@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<mat-sidenav-container class="nav-container" autosize *ngIf="!globals.loading">
+<mat-sidenav-container class="nav-container" autosize *ngIf="!loading">
   <mat-sidenav [mode]="mode" [(opened)]="expanded" class="side-nav" (closed)="expanded = false">
     <mat-toolbar class="logo">
       <a mat-button class="nav-button" [routerLink]="['/']">
@@ -59,7 +59,6 @@
       </button>
       <mat-menu #userMenu="matMenu">
         <a mat-menu-item routerLink="/users/profile">Profile</a>
-        <!-- <a mat-menu-item routerLink="/users/jobs">My Jobs</a> -->
         <a mat-menu-item (click)="logout()">Logout</a>
       </mat-menu>
     </mat-toolbar>

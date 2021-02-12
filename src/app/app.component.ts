@@ -21,6 +21,7 @@ export class AppComponent {
   selected: any;
   mode: string = 'side';
   expanded: boolean = true;
+  loading: boolean = true;
 
   constructor(
     public globals: Globals,
@@ -28,7 +29,6 @@ export class AppComponent {
     public cookieService: CookieService,
     mediaObserver: MediaObserver,
   ) {
-    this.globals.loading = true;
     this.watcher = mediaObserver.media$.subscribe((change: MediaChange) => {
       this.activeMediaQuery = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : '';
       switch (change.mqAlias) {
@@ -41,7 +41,7 @@ export class AppComponent {
           this.mode = 'side';
           this.expanded = true;
       }
-      this.globals.loading = false;
+      this.loading = false;
     });
   }
 
