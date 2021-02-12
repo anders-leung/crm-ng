@@ -49,7 +49,16 @@ export class HttpToastrInterceptor implements HttpInterceptor {
       return throwError(err.error.message);
     } else {
       const { action, which, what } = this.parseReq(req);
-      if (which !== 'Auth') this.toastr.error(`Failed to ${action} ${which}`, err.error.message);
+      if (what !== 'auth') {
+        this.toastr.error(`Failed to ${action} ${which}`, err.error.message);
+      } else {
+        // Error toasts specifically for login, as the route is a little different
+        if (err.status === 401) {
+          this.toastr.error('Invalid username or password', err.error.message);
+        } else {
+          this.toastr.error('Failed to login', err.error.message);
+        }
+      }
       return throwError(err);
     }
   }
