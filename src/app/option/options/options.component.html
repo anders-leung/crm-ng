@@ -1,7 +1,11 @@
 <div *ngIf="!globals.loading">
   <p class="mat-subheading-2 card">
     New Option types will be added to the currently displayed table, simply
-    refresh to see the new option type in it's own table
+    refresh to see the new option type in it's own table.
+    <br />
+    These Options affect the select inputs and their options for clients when
+    you go to edit or check their details. Plural Option types will generate
+    multi select inputs.
   </p>
   <tabbed-table
     [redirectUrl]="redirectUrl"
