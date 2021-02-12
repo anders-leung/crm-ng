@@ -1,17 +1,23 @@
-<mat-card class="card" *ngIf="!loading">
-  <mat-tab-group *ngIf="tabs.length > 1" [selectedIndex]="dropdown ? 1 : 0" (selectedTabChange)="selected = $event.index">
+<mat-card *ngIf="!loading">
+  <mat-tab-group
+    *ngIf="tabs.length > 1"
+    [selectedIndex]="dropdown ? 1 : 0"
+    (selectedTabChange)="selected = $event.index"
+    style="margin-bottom: -16px;"
+  >
     <mat-tab class="dropdownTab" *ngIf="dropdown" disabled="true">
-      <ng-template mat-tab-label style="margin: 0; padding: 0;">
+      <ng-template mat-tab-label style="margin: 0; padding: 0">
         <button
           mat-stroked-button
           class="dropdown"
           [matMenuTriggerFor]="menu"
           disableRipple="true"
         >
-          <span style="color:rgba(0,0,0,.87);">{{
+          <span style="color: rgba(0, 0, 0, 0.87)">{{
             dropdown.label + ": " + selection
           }}</span>
-          <mat-icon style="color:rgba(0,0,0,.87); margin-inline-start: 10px"
+          <mat-icon
+            style="color: rgba(0, 0, 0, 0.87); margin-inline-start: 10px"
             >keyboard_arrow_down</mat-icon
           >
         </button>
@@ -41,13 +47,17 @@
           [search]="search"
           [paginate]="paginate"
           [export]="export"
-          [title]="(tab.title ? tab.title : (title ? title + ' ' + tab.name : tab.name) + ' - ' + today)"
+          [title]="
+            tab.title
+              ? tab.title
+              : (title ? title + ' ' + tab.name : tab.name) + ' - ' + today
+          "
           [filters]="filters"
           [raw]="raw"
           [openNewTab]="tab.openNewTab"
           [addForm]="tab.addForm || addForm"
           [expandForm]="expandForm"
-          *ngIf="dropdown ? (selected === i+1) : (selected === i)"
+          *ngIf="dropdown ? selected === i + 1 : selected === i"
         >
         </app-table>
       </mat-card-content>
