@@ -277,30 +277,25 @@
     <mat-progress-spinner color="primary" mode="indeterminate">
     </mat-progress-spinner>
   </div>
-</div>
-<mat-toolbar class="paginate">
-  <mat-toolbar-row>
-    <button
-      mat-mini-fab
-      class="export-button"
-      color="primary"
-      (click)="exportTable()"
-      *ngIf="export === true"
-    >
-      <mat-icon class="export-icon">save_alt</mat-icon>
-    </button>
+  <div class="table-footer" fxLayout="row" fxLayoutAlign="space-between end">
     <mat-form-field
+      fxFlex="20"
       class="export-as"
       appearance="outline"
       *ngIf="export === true"
     >
       <mat-label>Export table as</mat-label>
       <input matInput [(ngModel)]="title" (keyup.enter)="exportTable()" />
+      <button
+        mat-icon-button
+        matSuffix
+        color="primary"
+        (click)="exportTable()"
+        [attr.aria-label]="'Export the table to excel'"
+      >
+        <mat-icon>save_alt</mat-icon>
+      </button>
     </mat-form-field>
-    <p class="table-message">
-      Hold "Shift" and scroll to scroll sideways for the table
-    </p>
-    <span class="fill-space"></span>
     <mat-paginator
       class="paginator"
       pageSize="10"
@@ -308,5 +303,5 @@
       showFirstLastButtons
     >
     </mat-paginator>
-  </mat-toolbar-row>
-</mat-toolbar>
+  </div>
+</div>
