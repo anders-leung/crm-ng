@@ -68,14 +68,13 @@
     font-weight: bold
     padding-right: 10px
 
-
   // Start of the expanded row styling
-  .detail-row 
+  .detail-row
     height: 0
 
   .expanded-cell
     padding: 0
-    
+
   .expanded-detail
     overflow: hidden
     display: flex
@@ -92,15 +91,17 @@
 
   .date
     padding: 0
-    
+
     input
       height: 45px
       width: 70%
 
-.table-footer
-  .export-as
-    margin-bottom: -10px
-    margin-top: 10px
+.export-as
+  margin-top: 10px
+
+// Gets rid of the extra bottom padding from the export form field
+::ng-deep .table-footer .export-as mat-form-field .mat-form-field-wrapper
+  padding: 0
 
 .loading
   height: 40vh

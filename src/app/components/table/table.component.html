@@ -278,24 +278,21 @@
     </mat-progress-spinner>
   </div>
   <div class="table-footer" fxLayout="row" fxLayoutAlign="space-between end">
-    <mat-form-field
-      fxFlex="20"
-      class="export-as"
-      appearance="outline"
-      *ngIf="export === true"
-    >
-      <mat-label>Export table as</mat-label>
-      <input matInput [(ngModel)]="title" (keyup.enter)="exportTable()" />
-      <button
-        mat-icon-button
-        matSuffix
-        color="primary"
-        (click)="exportTable()"
-        [attr.aria-label]="'Export the table to excel'"
-      >
-        <mat-icon>save_alt</mat-icon>
-      </button>
-    </mat-form-field>
+    <div class="export-as" fxFlex="20" *ngIf="export === true">
+      <mat-form-field appearance="outline">
+        <mat-label>Export table as</mat-label>
+        <input matInput [(ngModel)]="title" (keyup.enter)="exportTable()" />
+        <button
+          mat-icon-button
+          matSuffix
+          color="primary"
+          (click)="exportTable()"
+          [attr.aria-label]="'Export the table to excel'"
+        >
+          <mat-icon>save_alt</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
     <mat-paginator
       class="paginator"
       pageSize="10"
