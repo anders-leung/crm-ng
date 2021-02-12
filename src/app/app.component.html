@@ -63,14 +63,15 @@
       </mat-menu>
     </mat-toolbar>
     <div class="main-page">
-      <div
-        class="spinner"
-        *ngIf="globals.loading"
-        fxLayoutAlign="center center"
-      >
-        <mat-spinner></mat-spinner>
-      </div>
-      <router-outlet></router-outlet>
+      <router-outlet>
+        <div
+          class="spinner"
+          fxLayoutAlign="center center"
+          *ngIf="globals.loading"
+        >
+          <mat-spinner></mat-spinner>
+        </div>
+      </router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
