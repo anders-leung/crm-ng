@@ -36,7 +36,7 @@ export class AppComponent {
           this.mode = 'over';
           this.expanded = false;
           break;
-        case 'md':
+        default:
           this.mode = 'side';
           this.expanded = true;
       }
