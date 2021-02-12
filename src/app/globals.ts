@@ -8,7 +8,7 @@ import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 
 export const yesNo = [{ label: 'Y', value: true }, { label: 'N', value: false }];
-export const deleteRow = { label: 'Delete', field: 'shouldnotexist', type: 'deleteButton' };
+export const deleteRow = { label: 'Delete', field: 'shouldnotexist', type: 'deleteButton', export: false };
 export const exists = { $nin: [undefined, null] };
 export const notExists = { $in: [undefined, null] };
 export const existsString = { $nin: [undefined, null, ''] };
