@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<mat-sidenav-container class="nav-container" autosize>
+<mat-sidenav-container class="nav-container" autosize *ngIf="!globals.loading">
   <mat-sidenav [mode]="mode" [(opened)]="expanded" class="side-nav" (closed)="expanded = false">
     <mat-toolbar class="logo">
       <a mat-button class="nav-button" [routerLink]="['/']">
