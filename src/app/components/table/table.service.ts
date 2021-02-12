@@ -21,7 +21,7 @@ export class TableService {
     const table = data.map((row, i) => {
       return columns.map((column, j) => {
         const { field, sum, visible, type } = column;
-        if (visible === false) return;
+        if (visible === false || column.export === false) return;
 
         let value = _.get(row, field);
 
