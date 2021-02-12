@@ -102,7 +102,7 @@ export class TableComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     if (this.export === undefined) {
-      this.export = this.globals.user.role === 'Administrator';
+      this.export = this.globals.user.role.name === 'Administrator';
     }
     if (this.globals.user.role.name === 'Administrator') {
       this.columns = [...this.columns].concat(deleteRow);
