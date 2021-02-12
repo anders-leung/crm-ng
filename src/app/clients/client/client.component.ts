@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 
 import { Globals } from '../../globals';
 
@@ -34,17 +35,18 @@ export class ClientComponent implements OnInit {
     if (this.globals.setupPage(this.page)) return;
 
     this.id = this.globals.redirectNullId(this.route);
-    this.clientService.getOptions()
-      .subscribe((options: any) => {
-        this.clientService.getClient(this.id)
-          .subscribe((client: any) => {
-            if (this.id) {
-              this.globals.page = `${this.page} - ${client.name}`;
-            }
-            this.client = client;
-            this.config = config(options);
-            this.globals.loading = false;
-          });
+    const requests = [
+      this.clientService.getOptions(),
+      this.clientService.getClient(this.id),
+    ];
+    forkJoin(requests)
+      .subscribe(([options, client]) => {
+        if (this.id) {
+          this.globals.page = `${this.page} - ${client.name}`;
+        }
+        this.client = client;
+        this.config = config(options);
+        this.globals.loading = false;
       });
   }
 
