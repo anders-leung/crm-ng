@@ -1,11 +1,14 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <mat-sidenav-container class="nav-container" autosize>
-  <mat-sidenav mode="side" opened class="side-nav">
+  <mat-sidenav [mode]="mode" [(opened)]="expanded" class="side-nav" (closed)="expanded = false">
     <mat-toolbar class="logo">
       <a mat-button class="nav-button" [routerLink]="['/']">
         CRM
         <!-- <mat-icon class="arrow" style="margin-right: 5px">reorder</mat-icon> -->
       </a>
+      <button mat-icon-button (click)="expanded = !expanded">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
     </mat-toolbar>
     <div class="container" *ngIf="globals.user.role">
       <mat-list *ngFor="let item of navigation; let i = index">
@@ -36,6 +39,14 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar class="navigation">
+      <button
+        mat-icon-button
+        class="expand-sidenav"
+        *ngIf="!expanded || mode === 'over'"
+        (click)="expanded = !expanded"
+      >
+        <mat-icon>chevron_right</mat-icon>
+      </button>
       <span>{{ globals.page }}</span>
       <span class="fill-space"></span>
       <button
@@ -53,7 +64,11 @@
       </mat-menu>
     </mat-toolbar>
     <div class="main-page">
-      <div class="spinner" *ngIf="globals.loading" fxLayoutAlign="center center">
+      <div
+        class="spinner"
+        *ngIf="globals.loading"
+        fxLayoutAlign="center center"
+      >
         <mat-spinner></mat-spinner>
       </div>
       <router-outlet></router-outlet>

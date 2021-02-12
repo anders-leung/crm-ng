@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { Subscription } from 'rxjs';
+import { MediaChange, MediaObserver } from '@angular/flex-layout';
 
 import { Globals } from './globals';
-import { CookieService } from 'ngx-cookie-service';
-
 import _ from 'lodash';
 import { navigation } from './navigation';
 
@@ -13,15 +14,34 @@ import { navigation } from './navigation';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
+  watcher: Subscription;
+  activeMediaQuery: string = '';
   title = 'CRM';
   navigation: any = navigation;
   selected: any;
+  mode: string = 'side';
+  expanded: boolean = true;
 
   constructor(
     public globals: Globals,
     public router: Router,
     public cookieService: CookieService,
-  ) { }
+    mediaObserver: MediaObserver,
+  ) {
+    this.watcher = mediaObserver.media$.subscribe((change: MediaChange) => {
+      this.activeMediaQuery = change ? `'${change.mqAlias}' = (${change.mediaQuery})` : '';
+      switch (change.mqAlias) {
+        case 'sm':
+        case 'xs':
+          this.mode = 'over';
+          this.expanded = false;
+          break;
+        case 'md':
+          this.mode = 'side';
+          this.expanded = true;
+      }
+    });
+  }
 
   ngOnInit() {
     const userCookie = this.cookieService.get('User');
@@ -35,6 +55,10 @@ export class AppComponent {
     }
 
     this.globals.haveAccess();
+  }
+
+  ngOnDestroy() {
+    this.watcher.unsubscribe();
   }
 
   public redirectToLogin() {
