@@ -21,12 +21,13 @@ export class UsersComponent implements OnInit {
   getter: any;
   setter: any;
   deleter: any;
-  loading: boolean = true;
 
   constructor(
     private usersService: UsersService,
     private globals: Globals,
-  ) { }
+  ) {
+    this.globals.loading = true;
+  }
 
   ngOnInit() {
     if (!this.globals.haveAccess()) return;
@@ -37,7 +38,7 @@ export class UsersComponent implements OnInit {
     this.usersService.getOptions()
       .subscribe((options) => {
         this.table = table(options);
-        this.loading = false;
+        this.globals.loading = false;
       });
   }
 }
