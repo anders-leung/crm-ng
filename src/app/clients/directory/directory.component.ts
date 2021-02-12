@@ -28,7 +28,6 @@ export class DirectoryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const { user } = this.globals;
     this.adder = this.clientService.saveClient;
     this.getter = this.clientService.getClients;
     this.setter = this.clientService.updateClient;
