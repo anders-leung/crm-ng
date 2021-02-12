@@ -191,7 +191,6 @@ export class TableComponent implements OnInit {
 
   columnSearch = () => {
     const filters = this.getFilters();
-    console.log('filters: ', filters)
     let data = this.DATA;
     if (this.raw) data = _.cloneDeep(this.rawData);
     let filteredData = data.filter((row) => {
