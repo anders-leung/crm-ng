@@ -1,3 +1,4 @@
+import { get } from 'lodash';
 import { yesNo } from 'src/app/globals';
 
 export default (options) => {
@@ -12,7 +13,9 @@ export default (options) => {
     columns: [
       { label: 'Name', field: 'name', edit: { type: 'input' } },
       { label: 'Email', field: 'email', edit: { type: 'input' } },
-      { label: 'Role', field: 'role', fn: (user) => user.role.name, edit: { type: 'select', options: roles, none: false } },
+      {
+        label: 'Role', field: 'role', fn: (user) => get(user, 'role.name'), edit: { type: 'select', options: roles, none: false }
+      },
       { label: 'Initials', field: 'initials', edit: { type: 'input' } },
       { label: 'Private', field: 'private', edit: { type: 'select', options: yesNo } },
     ],
