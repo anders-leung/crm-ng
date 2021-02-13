@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   messages: string[] = [
     `As the backend is deployed with Vercel, utilizing serverless functions, requests on cold
     starts may fail. Please kindly try again, and your request should continue as expected.`,
+    `Most cells are editable, simply click on them to start editing the cell's value.`
   ];
 
   constructor(
