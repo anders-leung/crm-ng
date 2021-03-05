@@ -1,7 +1,7 @@
 <mat-form-field class="form-field" appearance="outline">
   <mat-label [ngStyle]="color ? { 'color': color } : {}">{{ label }}</mat-label>
   <input
-    *ngIf="!textarea && !currency"
+    *ngIf="!textarea"
     matInput
     [(ngModel)]="value"
     (change)="onChange()"
