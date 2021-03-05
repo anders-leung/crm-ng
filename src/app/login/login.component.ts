@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   loggingIn: boolean = false;
 
   constructor(
-    private globals: Globals,
+    public globals: Globals,
     private loginService: LoginService,
     private router: Router,
     private cookieService: CookieService,

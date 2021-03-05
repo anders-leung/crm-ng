@@ -39,7 +39,7 @@ export class TabbedTableComponent implements OnInit {
   selection: string;
   today: string = moment().format('MMM D, YYYY');
 
-  constructor(private globals: Globals) { }
+  constructor(public globals: Globals) { }
 
   ngOnInit() {
     this.setup();

@@ -26,7 +26,7 @@ export class ClientComponent implements OnInit {
     private toastr: ToastrService,
     private route: ActivatedRoute,
     private router: Router,
-    private globals: Globals,
+    public globals: Globals,
   ) {
     this.globals.loading = true;
   }

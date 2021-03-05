@@ -9,7 +9,7 @@ import { Globals } from '../globals';
 
 export class LoginService {
 
-  constructor(private http: HttpClient, private globals: Globals) { }
+  constructor(private http: HttpClient, public globals: Globals) { }
 
   login(email: string, password: string) {
     return this.http.post<any>(`${this.globals.url}/auth/login`, { email, password });

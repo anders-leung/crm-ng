@@ -9,7 +9,7 @@ import { Globals } from '../globals';
 
 export class JobService {
 
-  constructor(private http: HttpClient, private globals: Globals) { }
+  constructor(private http: HttpClient, public globals: Globals) { }
 
   getJob = (id) => {
     if (!id) return this.http.get<any>(`${this.globals.url}/jobs/newJob`);

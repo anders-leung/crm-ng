@@ -27,7 +27,7 @@ export class ModelComponent implements OnInit {
     private toastr: ToastrService,
     private route: ActivatedRoute,
     private router: Router,
-    private globals: Globals,
+    public globals: Globals,
   ) { }
 
   ngOnInit() {

@@ -50,7 +50,7 @@ export class MonitoringComponent implements OnInit {
   title: string = `${this.page} - ${moment().format('MMM D, YYYY')}`;
 
   constructor(
-    private globals: Globals,
+    public globals: Globals,
     private router: Router,
     private clientService: ClientService,
     private jobService: JobService,

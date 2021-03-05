@@ -58,6 +58,7 @@ export class TableComponent implements OnInit {
   tableSearchUpdate = new Subject<string>();
   searching: boolean = false;
   expandedElement = null;
+  searchValue = null;
 
   @Input() columns: any[];
   @Input() redirectUrl: string;
@@ -86,7 +87,7 @@ export class TableComponent implements OnInit {
   public static queryUpdates: Subject<any> = new Subject<any>();
 
   constructor(
-    private globals: Globals,
+    public globals: Globals,
     private router: Router,
     private tableService: TableService,
     private changeDetectorRef: ChangeDetectorRef,

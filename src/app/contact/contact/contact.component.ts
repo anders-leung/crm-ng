@@ -27,7 +27,7 @@ export class ContactComponent implements OnInit {
     private toastr: ToastrService,
     private route: ActivatedRoute,
     private router: Router,
-    private globals: Globals,
+    public globals: Globals,
   ) {
     if (this.globals.setupPage(this.page)) return;
 
