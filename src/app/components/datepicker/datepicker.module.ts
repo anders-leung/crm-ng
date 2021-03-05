@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material'
+import { MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MomentDateModule } from '@angular/material-moment-adapter';
 
 import { DatepickerComponent } from './datepicker.component';
