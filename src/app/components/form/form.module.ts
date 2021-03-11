@@ -15,6 +15,7 @@ import { DatepickerModule } from '../datepicker/datepicker.module';
 import { SelectModule } from '../select/select.module';
 import { CheckboxModule } from '../checkbox/checkbox.module';
 import { AutocompleteModule } from '../autocomplete/autocomplete.module';
+import { DateRangePickerModule } from '../date-range-picker/date-range-picker.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AutocompleteModule } from '../autocomplete/autocomplete.module';
     MatIconModule,
     InputModule,
     DatepickerModule,
+    DateRangePickerModule,
     SelectModule,
     CheckboxModule,
     AutocompleteModule,

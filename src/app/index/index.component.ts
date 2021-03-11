@@ -11,7 +11,7 @@ import { Globals } from '../globals';
 export class IndexComponent implements OnInit {
 
   constructor(
-    private globals: Globals
+    public globals: Globals
   ) { }
 
   ngOnInit() {

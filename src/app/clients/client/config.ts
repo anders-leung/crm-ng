@@ -10,7 +10,7 @@ export default (options) => {
         { label: 'Phone', field: 'phone' },
         { label: 'Email', field: 'email' },
         { label: 'Last Notified', field: 'notified', type: 'date' },
-      ]
+      ],
     ],
   };
 

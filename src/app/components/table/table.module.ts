@@ -14,7 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material';
+import { MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material/core';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { InputModule } from '../../components/input/input.module';

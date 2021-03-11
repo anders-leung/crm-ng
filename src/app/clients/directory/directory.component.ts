@@ -23,7 +23,7 @@ export class DirectoryComponent implements OnInit {
   title: string = `${this.page} - ${moment().format('MMM D, YYYY')}`;
 
   constructor(
-    private globals: Globals,
+    public globals: Globals,
     private clientService: ClientService,
   ) { }
 

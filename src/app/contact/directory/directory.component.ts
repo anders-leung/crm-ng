@@ -19,7 +19,7 @@ export class DirectoryComponent implements OnInit {
   deleter: any;
 
   constructor(
-    private globals: Globals,
+    public globals: Globals,
     private contactService: ContactService
   ) { }
 

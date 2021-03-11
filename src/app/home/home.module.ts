@@ -16,7 +16,7 @@ import { SelectModule } from '../components/select/select.module';
 import { TabbedTableModule } from '../components/tabbed-table/tabbed-table.module';
 import { TableModule } from '../components/table/table.module';
 import { HomeComponent } from './home.component';
-import { MatListModule } from '@angular/material';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   imports: [

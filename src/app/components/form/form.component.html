@@ -14,6 +14,10 @@
               [required]="input.required" [readonly]="input.readonly" [color]="input.color"
               (update)="get(object, i, input.field, column, $event)">
             </app-datepicker>
+            <app-date-range-picker *ngSwitchCase="'dateRange'" [label]="input.label" [value]="get(object, i, input.field, column)"
+              [required]="input.required" [readonly]="input.readonly" [color]="input.color"
+              (update)="get(object, i, input.field, column, $event)">
+            </app-date-range-picker>
             <app-select *ngSwitchCase="'select'" [label]="input.label" [value]="get(object, i, input.field, column)"
               [options]="input.options" [multiple]="input.multiple" [required]="input.required" [none]="input.none" [color]="input.color"
               (update)="get(object, i, input.field, column, $event)" (onChange)="input.onChange">

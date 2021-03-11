@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   user: any;
 
   constructor(
-    private globals: Globals,
+    public globals: Globals,
     private userService: UsersService,
   ) { }
 

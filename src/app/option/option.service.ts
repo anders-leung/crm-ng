@@ -9,7 +9,7 @@ import { Globals } from '../globals';
 
 export class OptionService {
 
-  constructor(private http: HttpClient, private globals: Globals) { }
+  constructor(private http: HttpClient, public globals: Globals) { }
 
   getVariables = () => {
     return this.http.get<any>(`${this.globals.url}/options/options`);

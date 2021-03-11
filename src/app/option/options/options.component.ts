@@ -21,7 +21,7 @@ export class OptionsComponent implements OnInit {
   deleter: any;
 
   constructor(
-    private globals: Globals,
+    public globals: Globals,
     private optionService: OptionService,
   ) {
     this.globals.loading = true;

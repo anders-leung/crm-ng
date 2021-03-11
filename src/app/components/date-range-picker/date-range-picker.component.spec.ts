@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { TabbedTableComponent } from './tabbed-table.component';
+import { DateRangePickerComponent } from './date-range-picker.component';
 
-describe('TableComponent', () => {
-  let component: TabbedTableComponent;
-  let fixture: ComponentFixture<TabbedTableComponent>;
+describe('DatepickerComponent', () => {
+  let component: DateRangePickerComponent;
+  let fixture: ComponentFixture<DateRangePickerComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TabbedTableComponent ]
+      declarations: [ DateRangePickerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TabbedTableComponent);
+    fixture = TestBed.createComponent(DateRangePickerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

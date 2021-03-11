@@ -24,7 +24,7 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private usersService: UsersService,
-    private globals: Globals,
+    public globals: Globals,
   ) {
     this.globals.loading = true;
   }

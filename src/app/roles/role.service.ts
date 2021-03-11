@@ -11,7 +11,7 @@ export class RoleService {
 
   constructor(
     private http: HttpClient,
-    private globals: Globals
+    public globals: Globals
   ) { }
 
   getRoles = (query, select) => {

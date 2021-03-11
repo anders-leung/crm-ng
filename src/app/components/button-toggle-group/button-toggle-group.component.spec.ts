@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ButtonToggleGroupComponent } from './button-toggle-group.component';
 
@@ -6,7 +6,7 @@ describe('ButtonToggleGroupComponent', () => {
   let component: ButtonToggleGroupComponent;
   let fixture: ComponentFixture<ButtonToggleGroupComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ButtonToggleGroupComponent ]
     })
