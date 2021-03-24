@@ -1,0 +1,25 @@
+<div [hidden]="globals.loading">
+  <div fxLayout="row">
+    <app-autocomplete
+      label="Type"
+      [value]="type"
+      [options]="types"
+      [checkLabel]="null"
+      (update)="updateType($event)"
+    ></app-autocomplete>
+    <app-autocomplete
+      label="Name"
+      [value]="name"
+      [options]="names"
+      [checkLabel]="null"
+      (update)="updateName($event)"
+      [readonly]="!type"
+    ></app-autocomplete>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="save()"
+    >Save</button>
+  </div>
+  <div id="jsoneditor"></div>
+</div>

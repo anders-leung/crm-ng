@@ -25,7 +25,9 @@ export class DirectoryComponent implements OnInit {
   constructor(
     public globals: Globals,
     private clientService: ClientService,
-  ) { }
+  ) {
+    this.globals.page = this.page;
+  }
 
   ngOnInit() {
     this.adder = this.clientService.saveClient;

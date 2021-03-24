@@ -46,7 +46,12 @@ export class AutocompleteComponent implements OnInit {
 
   filter(value) {
     const regex = new RegExp(value || this.value, 'i');
-    this.filteredOptions = this.options.filter(option => option.match(regex));
+    this.filteredOptions = this.options.filter((option) => {
+      let toMatch = option;
+      const { label } = option;
+      if (label) toMatch = label;
+      return toMatch.match(regex);
+    });
     this.update.emit(this.value);
   }
   

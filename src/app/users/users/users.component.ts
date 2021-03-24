@@ -21,12 +21,13 @@ export class UsersComponent implements OnInit {
   getter: any;
   setter: any;
   deleter: any;
+  loading: boolean = true;
 
   constructor(
     private usersService: UsersService,
     public globals: Globals,
   ) {
-    this.globals.loading = true;
+    this.globals.page = this.page;
   }
 
   ngOnInit() {
@@ -38,7 +39,6 @@ export class UsersComponent implements OnInit {
     this.usersService.getOptions()
       .subscribe((options) => {
         this.table = table(options);
-        this.globals.loading = false;
       });
   }
 }

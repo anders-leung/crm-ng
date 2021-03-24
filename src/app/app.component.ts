@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
@@ -27,6 +27,7 @@ export class AppComponent {
     public globals: Globals,
     public router: Router,
     public cookieService: CookieService,
+    private cd: ChangeDetectorRef,
     mediaObserver: MediaObserver,
   ) {
     this.watcher = mediaObserver.media$.subscribe((change: MediaChange) => {

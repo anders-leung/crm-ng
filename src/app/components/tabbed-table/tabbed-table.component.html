@@ -1,9 +1,12 @@
+<div class="spinner" fxLayoutAlign="center center" *ngIf="!this.table">
+  <mat-spinner></mat-spinner>
+</div>
 <mat-card *ngIf="!loading">
   <mat-tab-group
     *ngIf="tabs.length > 1"
     [selectedIndex]="dropdown ? 1 : 0"
     (selectedTabChange)="selected = $event.index"
-    style="margin-bottom: -16px;"
+    style="margin-bottom: -16px"
   >
     <mat-tab class="dropdownTab" *ngIf="dropdown" disabled="true">
       <ng-template mat-tab-label style="margin: 0; padding: 0">

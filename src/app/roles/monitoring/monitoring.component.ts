@@ -3,6 +3,7 @@ import * as moment from 'moment';
 
 import table from '../tables/monitoring';
 import { RoleService } from '../role.service';
+import { Globals } from 'src/app/globals';
 
 @Component({
   selector: 'roles',
@@ -22,7 +23,10 @@ export class MonitoringComponent implements OnInit {
 
   constructor(
     private roleService: RoleService,
-  ) { }
+    public globals: Globals,
+  ) {
+    this.globals.page = this.page;
+  }
 
   ngOnInit() {
     this.adder = this.roleService.saveRole;

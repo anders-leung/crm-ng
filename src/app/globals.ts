@@ -6,7 +6,6 @@ import _ from 'lodash';
 import * as moment from 'moment';
 
 import { environment } from 'src/environments/environment';
-
 export const yesNo = [{ label: 'Y', value: true }, { label: 'N', value: false }];
 export const deleteRow = { label: 'Delete', field: 'shouldnotexist', type: 'deleteButton', export: false };
 export const exists = { $nin: [undefined, null] };
@@ -26,7 +25,6 @@ export class Globals {
   constructor(
     private cookieService: CookieService,
     private router: Router,
-    private location: Location,
   ) { }
   
   public get loading(): boolean {

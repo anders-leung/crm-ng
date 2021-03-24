@@ -11,8 +11,8 @@
     [hidden]="multiple"
   />
   <mat-autocomplete #auto="matAutocomplete" [hidden]="multiple">
-    <mat-option *ngFor="let option of filteredOptions" [value]="option">
-      {{ option }}
+    <mat-option *ngFor="let option of filteredOptions" [value]="option.label || option">
+      {{ option.label || option }}
     </mat-option>
   </mat-autocomplete>
   <mat-checkbox
@@ -34,7 +34,7 @@
       [removable]="true"
       (removed)="remove(option)"
     >
-      {{ option }}
+      {{ option.label || option }}
       <mat-icon matChipRemove>cancel</mat-icon>
     </mat-chip>
     <input

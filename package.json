@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "~11.2.4",
     "@angular/router": "~11.2.4",
     "file-saver": "^2.0.5",
+    "jsoneditor": "^9.2.0",
     "lodash": "^4.17.15",
     "moment": "^2.29.1",
     "ngx-cookie-service": "^11.0.2",

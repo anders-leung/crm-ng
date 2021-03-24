@@ -12,7 +12,6 @@ import * as moment from 'moment';
 
 export class TabbedTableComponent implements OnInit {
   @Input() redirectUrl: string;
-  @Input() page: string;
   @Input() table: any;
   @Input() queries: any[];
   @Input() adder: any;
@@ -53,7 +52,7 @@ export class TabbedTableComponent implements OnInit {
   }
   
   setup() {
-    if (this.page && this.globals.setupPage(this.page)) return;
+    if (!this.table) return;
     const { tabs, columns, addForm, expandForm } = this.table;
     this.getColumns(tabs, columns);
     this.tabs = tabs;

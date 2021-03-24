@@ -8,7 +8,7 @@ import * as moment from 'moment';
   styleUrls: ['./home.component.sass']
 })
 
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   date: string = moment('2021-02-11').format('MMM D, YYYY');
   messages: string[] = [
     `As the backend is deployed with Vercel, utilizing serverless functions, requests on cold
@@ -16,11 +16,7 @@ export class HomeComponent implements OnInit {
     `Most cells are editable, simply click on them to start editing the cell's value.`
   ];
 
-  constructor(
-    public globals: Globals
-  ) { }
-
-  ngOnInit() {
+  constructor(public globals: Globals) {
     this.globals.setupPage('Home');
   }
 }
