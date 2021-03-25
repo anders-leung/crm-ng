@@ -12,6 +12,10 @@ import { Globals } from 'src/app/globals';
 })
 
 export class MonitoringComponent implements OnInit {
+  subheading: string[] = [`
+    Roles determine which uri sections users can access, as well as
+    what they see in the side navigation.`
+  ];
   page: string = 'Roles';
   table: any = table;
   adder: any;

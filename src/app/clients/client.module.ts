@@ -23,7 +23,6 @@ import { ClientRoutingModule } from './client-routing.module';
 
 import { ClientComponent } from './client/client.component';
 import { DirectoryComponent } from './directory/directory.component';
-import { MonitoringComponent } from './monitoring/monitoring.component';
 
 @NgModule({
   imports: [
@@ -53,7 +52,6 @@ import { MonitoringComponent } from './monitoring/monitoring.component';
   declarations: [
     ClientComponent,
     DirectoryComponent,
-    MonitoringComponent,
   ]
 })
 

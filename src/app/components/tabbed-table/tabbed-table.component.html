@@ -2,6 +2,11 @@
   <mat-spinner></mat-spinner>
 </div>
 <mat-card *ngIf="!loading">
+  <div *ngIf="subheading">
+    <p class="mat-subheading-2">
+      <span *ngFor="let sub of subheading">{{ sub }}<br/></span>
+    </p>
+  </div>
   <mat-tab-group
     *ngIf="tabs.length > 1"
     [selectedIndex]="dropdown ? 1 : 0"

@@ -11,6 +11,7 @@ import * as moment from 'moment';
 })
 
 export class TabbedTableComponent implements OnInit {
+  @Input() subheading: string;
   @Input() redirectUrl: string;
   @Input() table: any;
   @Input() queries: any[];

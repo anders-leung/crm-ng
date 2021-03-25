@@ -12,6 +12,13 @@ import { Globals } from 'src/app/globals';
 })
 
 export class OptionsComponent implements OnInit {
+  subheading: string[] = [
+    `New Option types will be added to the currently displayed table,
+    simply refresh to see the new option type in it's own table.`,
+    `These Options affect the select inputs and their options for clients when
+    you go to edit or check their details.
+    Plural Option types will generate multi select inputs.`
+  ];
   redirectUrl: string = '';
   page: string = 'Option List';
   table: any;

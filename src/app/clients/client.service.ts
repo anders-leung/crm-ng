@@ -40,15 +40,7 @@ export class ClientService {
     return this.http.delete<any>(`${this.globals.url}/clients/${id}`);
   }
   
-  getInsurances = (query, select) => {
-    const params = new HttpParams()
-      .set('query', JSON.stringify(query))
-      .set('select', select.join(' '));
-
-    return this.http.get<any>(`${this.globals.url}/insurances`, { params });
-  }
-  
-  updateInsurances = (id, update) => {
-    return this.http.put<any>(`${this.globals.url}/insurances/${id}`, update);
+  generateClients = () => {
+    return this.http.post<any>(`${this.globals.url}/clients/generate`, {});
   }
 }
