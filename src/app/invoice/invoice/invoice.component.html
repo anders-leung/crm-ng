@@ -1,0 +1,43 @@
+<h3>
+
+  <mat-card class="card">
+    <mat-card-content>
+      <div class="spinner" *ngIf="loading" fxLayoutAlign="center center">
+        <mat-spinner></mat-spinner>
+      </div>
+      <mat-tab-group *ngIf="invoice" [selectedIndex]="tabIndex" (selectedTabChange)="tabChanged($event)">
+        <mat-tab label="General Info">
+          <div class="tab">
+            <app-form [objects]="[invoice.client]" [rows]="invoiceConfig.client"></app-form>
+            <app-form [objects]="[invoice.client]" [rows]="invoiceConfig.form"></app-form>
+            <app-form [objects]="[invoice]" [rows]="invoiceConfig.company"></app-form>
+            <app-form *ngIf="globals.user.role === 'Administrator'" [objects]="[invoice]" [rows]="invoiceConfig.preparer"></app-form>
+          </div>
+        </mat-tab>
+        <mat-tab label="Services">
+          <div class="tab">
+            <app-list-form field="service" [objects]="invoice.services" [config]="invoiceConfig.services"></app-list-form>
+          </div>
+        </mat-tab>
+        <mat-tab label="PDF" style="height:66vh">
+          <div style="padding-top:10px" *ngIf="!saving">
+            <object
+              class="invoice-pdf"
+              [data]="invoiceUrl"
+              type="application/pdf"
+              width="100%"
+              height="100%">
+              <h3>The PDF file you are looking for does not exist, or is not accessible.</h3>
+              <h3>Please try saving the client or invoice again, and reloading the page to see if the PDF can be re-generated.</h3>
+              <h3>If this does not work, please inform Anders, Georgia, or Ben so that we may look into the issue.</h3>
+            </object>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+    <mat-card-footer>
+      <app-form *ngIf="invoice && tabIndex !== 2" class="totals" [objects]="[invoice]" [rows]="invoiceConfig.sums"></app-form>
+      <button mat-raised-button class="full-width" color="primary" (click)="save()">Save</button>
+    </mat-card-footer>
+  </mat-card>
+<form>

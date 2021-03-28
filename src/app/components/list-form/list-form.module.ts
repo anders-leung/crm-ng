@@ -4,15 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { NgxMaskModule } from 'ngx-mask';
+import { MatIconModule } from '@angular/material/icon';
+import { FlexModule } from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatExpansionModule } from '@angular/material/expansion';
 
-import { InputComponent } from './input.component';
+import { ListFormComponent } from './list-form.component';
+import { FormModule } from '../form/form.module';
 
 @NgModule({
   declarations: [
-    InputComponent,
+    ListFormComponent
   ],
   imports: [
     CommonModule,
@@ -21,14 +24,17 @@ import { InputComponent } from './input.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule,
     MatCheckboxModule,
-    NgxMaskModule.forRoot(),
+    FlexModule,
+    FlexLayoutModule,
+    MatIconModule,
+    MatExpansionModule,
+    FormModule,
   ],
   providers: [
   ],
   exports: [
-    InputComponent,
+    ListFormComponent,
   ],
 })
-export class InputModule { }
+export class ListFormModule { }

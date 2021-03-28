@@ -1,0 +1,16 @@
+<div class="select">
+  <app-select label="Company" [value]="company" [options]="options" (update)="selectChange($event)"></app-select>
+</div>
+<tabbed-table
+  *ngIf="!loading"
+  [redirectUrl]="redirectUrl"
+  [page]="page"
+  [table]="table"
+  [getter]="getter"
+  [setter]="setter"
+  [deleter]="deleter"
+  [title]="title"
+  [export]="true"
+  [filters]="filters"
+>
+</tabbed-table>

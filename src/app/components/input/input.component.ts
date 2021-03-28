@@ -28,6 +28,8 @@ export class InputComponent implements OnInit {
   @Input() suffix: string;
   @Input() inputType: string;
   @Input() color: string;
+  @Input() thousandSeparator: string;
+  @Input() dropSpecialCharacters: boolean;
 
   @Output() update: EventEmitter<string> = new EventEmitter<string>();
   @Output() buttonUpdate: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -36,6 +38,7 @@ export class InputComponent implements OnInit {
 
   ngOnInit() {
     if (!this.suffix) this.suffix = '';
+    if (this.dropSpecialCharacters === undefined) this.dropSpecialCharacters = false;
     if (this.iconButton) {
       const { on, off, clicked } = this.iconButton;
       this.on = on;

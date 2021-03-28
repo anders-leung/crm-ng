@@ -1,47 +1,124 @@
-<div fxLayout="row" fxLayoutAlign="end center" style="margin-top: 1%; margin-bottom: 1%" *ngIf="addRemove">
+<div
+  fxLayout="row"
+  fxLayoutAlign="end center"
+  style="margin-top: 1%; margin-bottom: 1%"
+  *ngIf="addRemove"
+>
   <button mat-raised-button matSuffix color="primary" (click)="add()">
-    {{ 'Add a ' + field}} <mat-icon>add</mat-icon>
+    {{ "Add a " + field }} <mat-icon>add</mat-icon>
   </button>
 </div>
 <div fxLayout="row" *ngFor="let object of objects; let i = index">
-  <div style="width: 100%; padding-right: 1%" fxLayout="column" *ngFor="let column of columns">
-    <h3 *ngIf="column">{{ column[0].toUpperCase() + column.substring(1, column.length) }}</h3>
+  <div
+    style="width: 100%; padding-right: 1%"
+    fxLayout="column"
+    *ngFor="let column of columns"
+  >
+    <h3 *ngIf="column">
+      {{ column[0].toUpperCase() + column.substring(1, column.length) }}
+    </h3>
     <div *ngFor="let row of rows; let j = index">
       <div class="row" fxLayout="row">
         <div class="form-field" *ngFor="let input of row">
           <div [ngSwitch]="input.type">
-            <app-datepicker *ngSwitchCase="'date'" [label]="input.label" [value]="get(object, i, input.field, column)"
-              [required]="input.required" [readonly]="input.readonly" [color]="input.color"
-              (update)="get(object, i, input.field, column, $event)">
+            <app-datepicker
+              *ngSwitchCase="'date'"
+              [label]="input.label"
+              [value]="get(object, i, input.field, column)"
+              [required]="input.required"
+              [readonly]="input.readonly"
+              [color]="input.color"
+              (update)="get(object, i, input.field, column, $event)"
+            >
             </app-datepicker>
-            <app-date-range-picker *ngSwitchCase="'dateRange'" [label]="input.label" [value]="get(object, i, input.field, column)"
-              [required]="input.required" [readonly]="input.readonly" [color]="input.color"
-              (update)="get(object, i, input.field, column, $event)">
+            <app-date-range-picker
+              *ngSwitchCase="'dateRange'"
+              [label]="input.label"
+              [value]="get(object, i, input.field, column)"
+              [required]="input.required"
+              [readonly]="input.readonly"
+              [color]="input.color"
+              (update)="get(object, i, input.field, column, $event)"
+            >
             </app-date-range-picker>
-            <app-select *ngSwitchCase="'select'" [label]="input.label" [value]="get(object, i, input.field, column)"
-              [options]="input.options" [multiple]="input.multiple" [required]="input.required" [none]="input.none" [color]="input.color"
-              (update)="get(object, i, input.field, column, $event)" (onChange)="input.onChange">
+            <app-select
+              *ngSwitchCase="'select'"
+              [label]="input.label"
+              [value]="get(object, i, input.field, column)"
+              [options]="input.options"
+              [multiple]="input.multiple"
+              [required]="input.required"
+              [none]="input.none"
+              [color]="input.color"
+              (update)="get(object, i, input.field, column, $event)"
+              (onChange)="(input.onChange)"
+            >
             </app-select>
-            <app-checkbox *ngSwitchCase="'checkbox'" [label]="input.label" [value]="get(object, i, input.field, column)"
-              (update)="get(object, i, input.field, column, $event)" [styling]="input.style" [color]="input.color">
+            <app-checkbox
+              *ngSwitchCase="'checkbox'"
+              [label]="input.label"
+              [value]="get(object, i, input.field, column)"
+              (update)="get(object, i, input.field, column, $event)"
+              [styling]="input.style"
+              [color]="input.color"
+            >
             </app-checkbox>
-            <app-autocomplete *ngSwitchCase="'autocomplete'" [label]="input.label"
-              [value]="get(object, i, input.field, column)" [checkLabel]="input.check ? input.check.label : null"
-              [checkValue]="input.check ? get(object, i, input.check.field, column) : null" [options]="input.options"
-              [required]="input.required" [readonly]="input.readonly" [multiple]="input.multiple"
-              (update)="get(object, i, input.field, column, $event)"
-              (buttonUpdate)="object ? object[input.check.field]=$event : objects[i][input.check.field]=$event">
-            </app-autocomplete>
-            <app-form *ngSwitchCase="'form'" [objects]="get(object, i, input.field, column)" [rows]="input.config" [field]="input.name" addRemove="true"></app-form>
-            <!-- <app-upload *ngSwitchCase="'upload'" [label]="input.label" ></app-upload> -->
-            <app-input *ngSwitchDefault [label]="input.label" [value]="get(object, i, input.field, column)"
+            <app-autocomplete
+              *ngSwitchCase="'autocomplete'"
+              [label]="input.label"
+              [value]="get(object, i, input.field, column)"
               [checkLabel]="input.check ? input.check.label : null"
-              [checkValue]="input.check ? get(object, i, input.check.field, column) : false"
-              [iconButton]="input.checkData" [disabled]="input.disabled" [textarea]="input.textarea" [rows]="input.rows"
-              [type]="input.type" [required]="input.required" [readonly]="input.readonly" [inputType]="input.inputType"
-              [prefix]="input.prefix || ''" [mask]="input.mask" [suffix]="input.suffix" [color]="input.color"
+              [checkValue]="
+                input.check ? get(object, i, input.check.field, column) : null
+              "
+              [options]="input.options"
+              [required]="input.required"
+              [readonly]="input.readonly"
+              [multiple]="input.multiple"
               (update)="get(object, i, input.field, column, $event)"
-              (buttonUpdate)="object ? object[input.check.field]=$event : objects[i][input.check.field]=$event">
+              (buttonUpdate)="
+                object
+                  ? (object[input.check.field] = $event)
+                  : (objects[i][input.check.field] = $event)
+              "
+            >
+            </app-autocomplete>
+            <app-form
+              *ngSwitchCase="'form'"
+              [objects]="get(object, i, input.field, column)"
+              [rows]="input.config"
+              [field]="input.name"
+              addRemove="true"
+            ></app-form>
+            <app-input
+              *ngSwitchDefault
+              [label]="input.label"
+              [value]="get(object, i, input.field, column)"
+              [checkLabel]="input.check ? input.check.label : null"
+              [checkValue]="
+                input.check ? get(object, i, input.check.field, column) : false
+              "
+              [iconButton]="input.checkData"
+              [disabled]="input.disabled"
+              [textarea]="input.textarea"
+              [rows]="input.rows"
+              [type]="input.type"
+              [required]="input.required"
+              [readonly]="input.readonly"
+              [inputType]="input.inputType"
+              [prefix]="input.prefix || ''"
+              [mask]="input.mask"
+              [suffix]="input.suffix"
+              [thousandSeparator]="input.thousandSeparator || ''"
+              [dropSpecialCharacters]="input.dropSpecialCharacters"
+              [color]="input.color"
+              (update)="get(object, i, input.field, column, $event)"
+              (buttonUpdate)="
+                object
+                  ? (object[input.check.field] = $event)
+                  : (objects[i][input.check.field] = $event)
+              "
+            >
             </app-input>
           </div>
         </div>

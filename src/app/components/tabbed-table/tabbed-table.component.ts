@@ -58,7 +58,6 @@ export class TabbedTableComponent implements OnInit {
     this.getColumns(tabs, columns);
     this.tabs = tabs;
     this.columns = columns;
-    this.addForm = addForm;
     this.expandForm = expandForm;
     this.loading = false;
     if (this.filters === undefined) this.filters = {};

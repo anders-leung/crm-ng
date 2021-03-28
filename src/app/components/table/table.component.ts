@@ -240,7 +240,7 @@ export class TableComponent implements OnInit {
   getValue(element, path, fn, type) {
     if (fn) {
       const value = fn(element);
-      if (value && !isNaN(value)) return value.toFixed(2);
+      if (value && !isNaN(value)) return parseFloat(value).toFixed(2);
       return value;
     }
 

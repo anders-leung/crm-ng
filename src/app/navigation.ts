@@ -15,4 +15,22 @@ export const navigation = [
     name: 'Clients',
     url: '/clients',
   },
+  {
+    name: 'Invoices',
+    children: [
+      {
+        name: 'New Invoice',
+        url: '/invoices/new',
+      },
+      {
+        name: 'Outstanding',
+        url: '/invoices/outstanding',
+      },
+      {
+        name: 'All',
+        url: '/invoices/all',
+        role: 'Administrator',
+      },
+    ],
+  },
 ];

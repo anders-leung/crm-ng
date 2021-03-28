@@ -1,0 +1,49 @@
+<div fxLayout="row" fxLayoutAlign="end center">
+  <button mat-raised-button matSuffix color="primary" (click)="add()">
+    {{ "Add a " + field }} <mat-icon>add</mat-icon>
+  </button>
+</div>
+<mat-accordion class="accordion">
+  <mat-expansion-panel
+    class="expansion-panel"
+    *ngFor="let object of objects; let i = index"
+  >
+    <mat-expansion-panel-header class="panel-header">
+      <mat-panel-title class="panel-title">
+        <h3>{{ config.title(object) }}</h3>
+      </mat-panel-title>
+      <mat-panel-description style="width: 75%">
+        <div
+          fxLayout="row"
+          fxLayoutAlign="space-around center"
+          class="description-row"
+        >
+          <div fxLayout="column" fxFill *ngFor="let description of config.description">
+            <p class="mat-h1" *ngIf="description.title">
+              {{ description.title }}
+            </p>
+            <div
+              fxLayout="row"
+              fxLayoutAlign="space-around center"
+              *ngFor="let row of description.mapping(object)"
+            >
+              <p class="mat-body" *ngFor="let cell of row">{{ cell }}</p>
+            </div>
+          </div>
+        </div>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div fxLayout="row">
+      <app-form
+        [objects]="[object]"
+        [rows]="config.form"
+        style="width: 100%"
+      ></app-form>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <button mat-raised-button matSuffix color="warn" (click)="remove(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

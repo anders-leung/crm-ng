@@ -32,6 +32,7 @@ import { DeleteDialogModule } from './components/delete-dialog/delete-dialog.mod
 import { AddDialogModule } from './components/add-dialog/add-dialog.module';
 import { JobModule } from './jobs/job.module';
 import { RoleModule } from './roles/role.module';
+import { InvoiceModule } from './invoice/invoice.module';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { RoleModule } from './roles/role.module';
     AddDialogModule,
     DeleteDialogModule,
     RoleModule,
+    InvoiceModule,
   ],
   exports: [
     MatToolbarModule,
